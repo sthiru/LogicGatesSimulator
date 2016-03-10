@@ -1,0 +1,88 @@
+
+
+
+var gateList = new Array();
+var wireGroups = new Array();
+
+// target elements with the "draggable" class
+interact('.draggable')
+  .draggable({
+    // enable inertial throwing
+    inertia: true,
+	
+    // enable autoScroll
+    autoScroll: true,
+
+    // call this function on every dragmove event
+    onmove: dragMoveListener,
+    // call this function on every dragend event
+    onend: function (event) {
+      var target = event.target;
+	  target.removeAttribute("data-x");
+	  target.removeAttribute("data-y");
+	  target.removeAttribute("style");
+    }
+  });
+  
+interact('#designer').dropzone({
+	  accept: '.draggable',
+	  overlap: 0.5,
+	  ondropactivate: function (event) {
+    // add active dropzone feedback
+    event.target.classList.add('drop-active');
+  },
+  ondragenter: function (event) {
+    var draggableElement = event.relatedTarget,
+        dropzoneElement = event.target;
+
+    // feedback the possibility of a drop
+    dropzoneElement.classList.add('drop-target');
+    draggableElement.classList.add('can-drop');
+  },
+  ondragleave: function (event) {
+    // remove the drop feedback style
+    event.target.classList.remove('drop-target');
+    event.relatedTarget.classList.remove('can-drop');
+  },
+  ondrop: function (event) {
+	var offset = $('#designer').offset();
+	var x = event.dragEvent.pageX - offset.left;
+	var y = event.dragEvent.pageY - offset.top;
+    event.relatedTarget.removeAttribute("data-x");
+	event.relatedTarget.removeAttribute("data-y");
+	event.relatedTarget.removeAttribute("style");
+	var gate = event.relatedTarget.cloneNode(true);
+	gate.setAttribute('class','gates');
+	gate.style.width = $(".draggable")[0].width;
+	gate.style.height = $(".draggable")[0].height;
+	gate.style.webkitTransform =
+    gate.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
+	gate.setAttribute('data-x',x);
+	gate.setAttribute('data-y',y);
+	event.target.appendChild(gate);
+  },
+  ondropdeactivate: function (event) {
+    // remove active dropzone feedback
+    event.target.classList.remove('drop-active');
+    event.target.classList.remove('drop-target');
+	event.relatedTarget.classList.remove('can-drop');
+  }
+  });
+
+  function dragMoveListener (event) {
+    var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
+

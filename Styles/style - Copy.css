@@ -1,0 +1,200 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400|Dosis:200,300,400);
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #fff;
+  font-family: 'Dosis';
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 300;
+}
+
+header {
+  margin: 15px auto;
+  width: 500px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 25px;
+  text-indent: 10px;
+}
+
+a {
+  color: #333;
+}
+a:hover {
+  color: #33d68b;
+}
+
+.container {
+  margin: 0 auto 30px;
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  height: 160px;
+  background-color: #ddd;
+  border-radius: 6px;
+  box-shadow: 0 0 4px -1px #333;
+  overflow: hidden;
+}
+
+.box {
+  margin-left: 10px;
+  display: block;
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+.box:after {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: #eee;
+  content: '';
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  z-index: 50;
+}
+.box:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.light {
+  margin-right: 15px;
+  position: relative;
+  float: right;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.light:after {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-color: #33d68b;
+  border-radius: 50%;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  content: '';
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+#box-AND-1:checked ~ label[for="box-AND-1"]:before,
+#box-AND-2:checked ~ label[for="box-AND-2"]:before,
+#box-OR-1:checked ~ label[for="box-OR-1"]:before,
+#box-OR-2:checked ~ label[for="box-OR-2"]:before,
+#box-NOT-1:checked ~ label[for="box-NOT-1"]:before,
+#box-NAND-1:checked ~ label[for="box-NAND-1"]:before,
+#box-NAND-2:checked ~ label[for="box-NAND-2"]:before,
+#box-NOR-1:checked ~ label[for="box-NOR-1"]:before,
+#box-NOR-2:checked ~ label[for="box-NOR-2"]:before,
+#box-XOR-1:checked ~ label[for="box-XOR-1"]:before,
+#box-XOR-2:checked ~ label[for="box-XOR-2"]:before,
+#box-XNOR-1:checked ~ label[for="box-XNOR-1"]:before,
+#box-XNOR-2:checked ~ label[for="box-XNOR-2"]:before {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #d9517e;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'FontAwesome';
+  font-size: 2em;
+  color: #fff;
+  content: "\f00c";
+  z-index: 60;
+}
+
+#box-AND-1:checked + #box-AND-2:checked ~ .light-AND:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-OR-1:checked ~ .light-OR:after,
+#box-OR-2:checked ~ .light-OR:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-NOT-1:not(:checked) ~ .light-NOT:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-NAND-1:not(:checked) + #box-NAND-2:not(:checked) ~ .light-NAND:after,
+#box-NAND-1:checked ~ .light-NAND:after,
+#box-NAND-2:checked ~ .light-NAND:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-NAND-1:checked + #box-NAND-2:checked ~ .light-NAND:after {
+  width: 0%;
+  height: 0%;
+}
+
+#box-NOR-1:not(:checked) + #box-NOR-2:not(:checked) ~ .light-NOR:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-XOR-1:checked ~ .light-XOR:after,
+#box-XOR-2:checked ~ .light-XOR:after {
+  width: 100%;
+  height: 100%;
+}
+
+#box-XOR-1:not(:checked) + #box-XOR-2:not(:checked) ~ .light-XOR:after,
+#box-XOR-1:checked + #box-XOR-2:checked ~ .light-XOR:after {
+  width: 0%;
+  height: 0%;
+}
+
+#box-XNOR-1:not(:checked) + #box-XNOR-2:not(:checked) ~ .light-XNOR:after,
+#box-XNOR-1:checked + #box-XNOR-2:checked ~ .light-XNOR:after {
+  width: 100%;
+  height: 100%;
+}

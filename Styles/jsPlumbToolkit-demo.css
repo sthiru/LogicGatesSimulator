@@ -1,0 +1,117 @@
+/* ---------------------------------------------------------------------------------------------------- */
+/* --- page structure --------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+
+.canvas {
+    height:100%;
+    border:1px solid #CCC;
+    background-color:white;
+}
+
+.miniview {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+}
+
+
+.dataset {
+    text-align: left;
+    max-height: 600px;
+    overflow: auto;
+	display: none;
+}
+
+.controls {
+    top: 25px;
+    color: #FFF;
+    margin-right: 10px;
+    position: absolute;
+    left: 25px;
+    z-index: 1;
+}
+
+.controls i {
+    background-color: #3E7E9C;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 4px;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* --- jsPlumb setup ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+
+.jsplumb-drag
+{
+	width: 75px;
+	height: 25px;
+}
+
+.jsplumb-connector {
+    z-index:9;
+}
+
+.jsplumb-endpoint {
+    z-index:12;
+    opacity:0.8;
+    cursor:pointer;
+}
+
+.jsplumb-overlay {
+    background-color: white;
+    color: #434343;
+    font-weight: 400;
+    padding: 4px;
+    z-index:10;
+
+}
+
+.jsplumb-overlay.jsplumb-hover {
+    color: #434343;
+}
+
+path {
+    cursor:pointer;
+}
+
+.delete {
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.add, .edit {
+    cursor: pointer;
+    float:right;
+    font-size: 10px;
+    line-height: 20px;
+    margin-right:2px;
+    padding: 2px;
+}
+
+.edit:hover {
+    color: #ff8000;
+}
+
+.selected-mode {
+    color:#E4F013;
+}
+
+.connect {
+    width:10px;
+    height:10px;
+    background-color:#f76258;
+    position:absolute;
+    bottom: 13px;
+    right: 5px;
+}
+
+
+
+
+

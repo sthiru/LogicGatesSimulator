@@ -1,0 +1,292 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400|Dosis:200,300,400);
+
+html,
+body {
+  background-color: #fff;
+  font-family: 'Dosis';
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 300;
+}
+
+header {
+  margin: 15px auto;
+  width: 500px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 25px;
+  text-indent: 10px;
+}
+
+a {
+  color: #333;
+}
+a:hover {
+  color: #33d68b;
+}
+
+canvas
+{
+	border: 1px solid red;
+}
+
+#toolbar
+{
+	background-color: #ddd;
+	height: 100%;
+	padding: 0px;
+}
+
+#container
+{	
+	height: 100%;
+}
+
+#designer
+{
+	padding:10px;
+	width: 100%;
+	height: 90%;
+}
+
+#tabs
+{
+	border: 1px solid #555;
+	padding: 5px;
+}
+
+#truth-table
+{
+	width: 100%;
+}
+
+#truth-table table
+{
+	border: 1px solid #ccc;
+}
+
+#logic-gates img
+{
+	cursor: move;
+	width: 30%;
+	padding: 5px;
+	display: inline;
+	margin-bottom: 15px;
+}
+
+.container-old {
+  margin: 0 auto 30px;
+  padding: 10px;
+  position: relative;
+  width: 300px;
+  height: 160px;
+  background-color: #ddd;
+  border-radius: 6px;
+  box-shadow: 0 0 4px -1px #333;
+  overflow: hidden;
+}
+
+.box {
+  margin-left: 10px;
+  display: block;
+  position: relative;
+  float: left;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+.box:after {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: #eee;
+  content: '';
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  z-index: 50;
+}
+.box:hover:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.light {
+  margin-right: 15px;
+  position: relative;
+  float: right;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.light:after {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background-color: #33d68b;
+  border-radius: 50%;
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  content: '';
+}
+
+.dropzone {
+  background-color: #ccc;
+  border: dashed 4px transparent;
+  border-radius: 4px;
+  margin: 10px auto 30px;
+  padding: 10px;
+  width: 80%;
+  transition: background-color 0.3s;
+}
+
+.drop-active {
+  border-color: red;
+}
+
+.drop-target {
+  border-color: red;
+  border-style: solid;
+}
+
+.drag-drop {
+  border: solid 2px red;
+}
+
+.jsplumb-drag {
+	border: 1px solid #1D4263;
+}
+
+.miniview {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 100;
+}
+
+
+.jtk-demo-dataset {
+    text-align: left;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.demo-title {
+    float:left;
+    font-size:18px;
+}
+
+.controls {
+    top: 25px;
+    color: #FFF;
+    margin-right: 10px;
+    position: absolute;
+    left: 25px;
+    z-index: 1;
+}
+
+.controls i {
+    background-color: #3E7E9C;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0;
+    padding: 4px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* --- jsPlumb setup ---------------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------------- */
+
+.jsplumb-connector {
+    z-index:9;
+}
+
+.jsplumb-endpoint {
+    z-index:12;
+    opacity:0.8;
+    cursor:pointer;
+}
+
+.jsplumb-overlay {
+    background-color: white;
+    color: #434343;
+    font-weight: 400;
+    padding: 4px;
+    z-index:10;
+
+}
+
+.jsplumb-overlay.jsplumb-hover {
+    color: #434343;
+}
+
+path {
+    cursor:pointer;
+}
+
+.delete {
+    padding: 2px;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.add, .edit {
+    cursor: pointer;
+    float:right;
+    font-size: 10px;
+    line-height: 20px;
+    margin-right:2px;
+    padding: 2px;
+}
+
+.edit:hover {
+    color: #ff8000;
+}
+
+.selected-mode {
+    color:#E4F013;
+}
+
+.connect {
+    width:10px;
+    height:10px;
+    background-color:#f76258;
+    position:absolute;
+    bottom: 13px;
+    right: 5px;
+}
+
+
+

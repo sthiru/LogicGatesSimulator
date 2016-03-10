@@ -1,0 +1,13 @@
+{
+    "nodes": [
+        {
+            "id": "input",
+            "type": "input",
+            "text": "A",
+            "left": 50,
+            "top": 50,
+            "w": 100,
+            "h": 70
+        }
+    ]
+}

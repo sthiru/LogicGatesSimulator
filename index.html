@@ -1,0 +1,230 @@
+<html>
+<head>
+	<title>Logic Gates simulator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="styles\style.css" rel="stylesheet" type="text/css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link href="styles\jsPlumbToolkit-defaults.css" rel="stylesheet" type="text/css">
+	<link href="styles\jsPlumbToolkit-demo.css" rel="stylesheet" type="text/css">
+	<link href="styles\app.css" rel="stylesheet" type="text/css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+	<!--<script src="scripts\interact.min.js"></script>-->
+	<script src="scripts\jsPlumb-2.0.7.js"></script>
+	<!--<script src="scripts\jsPlumb-2.0.7-min.js"></script> -->
+	<script src="scripts\jsPlumbToolkit-1.0.17.js"></script>
+	<script src="scripts\main.js"></script>
+	<script>
+	$(document).ready(function(){	
+		$(".nav-tabs a").click(function(){
+			$(this).tab('show');
+		});
+		$('.nav-tabs a').on('shown.bs.tab', function(event){
+			var x = $(event.target).text();         // active tab
+			var y = $(event.relatedTarget).text();  // previous tab
+			$(".act span").text(x);
+			$(".prev span").text(y);
+		});
+	});
+	</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="toolbar" class="col-sm-3">
+				<h2>Logic Gates Simulator</h2>
+				<div class="panel panel-default" id="tools" style="margin-bottom:0px">
+					<div class="panel-heading">Tools</div>
+					<div class="panel-body">
+					<ul class="nav navbar-nav">
+					  <li><a href="#"><i class="fa fa-file fa-2" style="font-size:20px"></i> New</a></li>
+					  <li><a href="#"><i class="fa fa-floppy-o fa-2" style="font-size:20px"></i> Save</a></li>
+					  <li><a href="#"><i class="fa fa-folder-open fa-2" style="font-size:20px"></i> Load</a></li>
+					  <!--<li><a href="#"><i class="fa fa-play fa-2" style="font-size:20px"></i> Execute</a></li>-->
+					</ul>
+					</div>
+				</div>
+				<div class="panel panel-default" style="margin-bottom:0px">
+					<div class="panel-heading">Logic Gates</div>
+					<div class="panel-body" id="logic-gates">
+						<img class="draggable" draggable="true" src="images/logic-and.svg" id="AND" title="AND gate">
+						<img class="draggable" draggable="true" src="images/logic-nand.svg" id="NAND" title="NAND gate">
+						<img class="draggable" draggable="true" src="images/logic-or.svg" id="OR" title="OR gate">
+						<img class="draggable" draggable="true" src="images/logic-nor.svg" id="NOR" title="NOR gate">
+						<img class="draggable" draggable="true" src="images/logic-xor.svg" id="XOR" title="XOR gate">
+						<img class="draggable" draggable="true" src="images/logic-not.svg" id="NOT" title="NOT gate">
+					</div>
+				</div>
+				<div class="panel panel-default" id="help">
+					<div class="panel-heading">Help</div>
+					<div class="panel-body">
+						<p>Select any logic gate to see the help here.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-9" id="container">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#designer">Designer</a></li>
+					<li><a href="#truth-table">Truth Table</a></li>
+				</ul>
+				<div class="tab-content" id="tabs">
+					<div id="designer" class="tab-pane fade in active">
+						<div class="canvas">
+							<div class="miniview">
+							</div>
+						</div>
+						<div class="dataset"></div>
+					</div>
+					<div id="truth-table" class="tab-pane fade">
+						<div class="panel panel-default">
+							<div class="panel-heading">Simplified Boolean Expression</div>
+							<div class="panel-body">A</div>
+						</div>
+						<table class="table" id="truth-table">
+							<thead>
+								<tr><th colspan=4 style="text-align:center">Input</th><th>Output</th></tr>
+								<tr><th>A</th><th>B</th><th>C</th><th>D</th><th>O</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+								<tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+								<tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+								<tr><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+								<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+							<tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+<div id="jsPlumbToolkitTemplates" style="display: none;">
+
+<script type="jtk" id="tmplPort">
+	<svg style="position:absolute;left:0px;top:0px" width="20" height="20" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml">
+		<circle cx="10" cy="10" r="10" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#f76258" stroke="none" style=""></circle>
+	</svg>
+</script>
+
+<script type="jtk" id="OR gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+		<div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-or.svg" width="${w-20}" height="${h-20}" class="inner"/>
+		</div>
+        <jtk-source port-type="input" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="output"/>
+    </div>
+</script>
+
+
+<script type="jtk" id="AND gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-and.svg" width="${w-20}" height="${h-20}" class="inner"/>
+        </div>
+        <jtk-source port-type="input" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="output"/>
+    </div>
+</script>
+
+<script type="jtk" id="XOR gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-xor.svg" width="${w-20}" height="${h-20}" class="inner"/>
+        </div>
+        <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="target"/>
+    </div>
+</script>
+
+<script type="jtk" id="NOR gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-nor.svg" width="${w-20}" height="${h-20}" class="inner"/>
+        </div>
+        <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="target"/>
+    </div>
+</script>
+
+<script type="jtk" id="NOT gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-not.svg" width="${w-20}" height="${h-20}" class="inner"/>
+        </div>
+        <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="target"/>
+    </div>
+</script>
+
+<script type="jtk" id="NAND gate">
+	<div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div class="outer">
+			<div class="node-delete node-action"><i class="fa fa-times"></i></div>
+			<img src="images/logic-nand.svg" width="${w-20}" height="${h-20}" class="inner"/>
+        </div>
+        <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="target"/>
+    </div>
+</script>
+
+
+<script type="jtk" id="tmplInput">
+    <div style="left:${left}px;top:${top}px;width:${w}px;height:${h}px;" class="flowchart-object flowchart-start">
+        <div style="position:relative">
+            <svg:svg width="${w}" height="${h}">
+                <svg:rectangle x="${w/2}" y="${h/2}" width="${w}" height="${h}" class="outer"/>
+                <svg:rectangle x="${w/2}" y="${h/2}" width="${w-10}" height="${h-10}" class="inner"/>
+                <svg:text text-anchor="middle" x="${ w / 2 }" y="${ h / 2 }" dominant-baseline="central">Input {$text}</svg:text>
+            </svg:svg>
+        </div>
+        <jtk-source port-type="start" filter=".outer" filter-negate="true"/>
+		<jtk-target port-type="target"/>
+    </div>
+</script>
+
+<!-- edit text (question or action or output or edge label) -->
+<script type="jtk" class="dlg" id="dlgText" title="Enter Text">
+    <input type="text" size="50" jtk-focus jtk-att="text" value="${text}" jtk-commit="true"/>
+</script>
+
+<script type="jtk" class="dlg" id="dlgConfirm" title="Please Confirm">
+    ${msg}?
+</script>
+
+<script type="jtk" class="dlg" id="dlgMessage" title="Message" cancel="false">
+    ${msg}
+</script>
+
+<!-- edit name (table or view) -->
+<script type="jtk" class="dlg" id="dlgName" title="Enter Name">
+    <input type="text" size="50" jtk-focus jtk-att="name" jtk-commit="true"/>
+</script>
+</div>
+	
+		
+
+
+</body>
+</html>

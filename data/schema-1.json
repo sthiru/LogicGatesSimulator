@@ -1,0 +1,122 @@
+{
+    "nodes": [
+        {
+            "id": "book",
+            "name": "Book",
+            "type": "table",
+            "columns": [
+                {
+                    "id": "id",
+                    "datatype": "integer",
+                    "primaryKey": true
+                },
+                {
+                    "id": "isbn",
+                    "datatype": "varchar"
+                },
+                {
+                    "id": "title",
+                    "datatype": "varchar"
+                }
+            ]
+        },
+        {
+            "id": "book_author",
+            "name": "BookAuthor",
+            "type": "table",
+            "columns": [
+                {
+                    "id": "book_id",
+                    "datatype": "integer"
+                },
+                {
+                    "id": "author_id",
+                    "datatype": "integer"
+                }
+            ]
+        },
+        {
+            "id": "author",
+            "name": "Author",
+            "type": "table",
+            "columns": [
+                {
+                    "id": "id",
+                    "datatype": "integer",
+                    "primaryKey": true
+                },
+                {
+                    "id": "name",
+                    "datatype": "varchar"
+                }
+            ]
+        },
+        {
+            "id": "publisher",
+            "name": "Publisher",
+            "type": "table",
+            "columns": [
+                {
+                    "id": "id",
+                    "datatype": "integer",
+                    "primaryKey": true
+                },
+                {
+                    "id": "name",
+                    "datatype": "varchar"
+                }
+            ]
+        },
+        {
+            "id": "book_publisher",
+            "name": "BookPublisher",
+            "type": "table",
+            "columns": [
+                {
+                    "id": "book_id",
+                    "datatype": "integer"
+                },
+                {
+                    "id": "publisher_id",
+                    "datatype": "integer"
+                }
+            ]
+        },
+        {
+            "id": "books_by_author",
+            "name": "Books By Author",
+            "type": "view",
+            "query": "SELECT * FROM book b INNER JOIN book_author ba ON b.id = ba.book_id GROUP BY ba.author_id"
+        }
+    ],
+    "edges": [
+        {
+            "source": "book.id",
+            "target": "book_author.book_id",
+            "data": {
+                "type": "1:N"
+            }
+        },
+        {
+            "source": "author.id",
+            "target": "book_author.author_id",
+            "data": {
+                "type": "1:1"
+            }
+        },
+        {
+            "source": "book.id",
+            "target": "book_publisher.book_id",
+            "data": {
+                "type": "1:1"
+            }
+        },
+        {
+            "source": "publisher.id",
+            "target": "book_publisher.publisher_id",
+            "data": {
+                "type": "1:1"
+            }
+        }
+    ]
+}
